@@ -1,0 +1,82 @@
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;  
+
+public class seleniumscript {
+  
+	public static void main(String[] args) throws Exception{
+		System.setProperty("webdriver.chrome.driver", "C:\\SadiaHossain\\Soft\\Selenium_new\\chromedriver_win32\\chromedriver.exe");
+
+		 WebDriver driver = new ChromeDriver();
+	
+		 driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		 
+		 driver.findElement(By.id("email_create")).sendKeys("testSadia87@gmail.com");
+		 driver.findElement(By.id("SubmitCreate")).submit();
+		 
+		// WebDriverWait wait = new WebDriverWait(driver, 20);
+		 //wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("customer_firstname1"))));
+		 
+		 WebDriverWait wait = new WebDriverWait(driver, 10);
+		 WebElement first_name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("customer_firstname")));
+		 first_name.sendKeys("Sadia");
+		 		
+		 driver.findElement(By.id("customer_lastname")).sendKeys("Hossain");
+		 driver.findElement(By.id("passwd")).sendKeys("123456");
+		 
+		 // select days
+		 Select date = new Select(driver.findElement(By.xpath("//*[@id='days']")));
+		 date.selectByValue("11");
+		 
+         // select month 
+		 Select month = new Select(driver.findElement(By.xpath("//*[@id='months']")));
+		 month.selectByValue("5");
+		 
+		 //select year 
+		 Select year = new Select(driver.findElement(By.xpath("//*[@id='years']")));
+		 year.selectByValue("1997");
+		 
+		 driver.findElement(By.id("company")).sendKeys("XYZ");
+		 
+		 //Address
+		 driver.findElement(By.id("address1")).sendKeys("Road 12");
+		 
+		 // city
+		 driver.findElement(By.id("city")).sendKeys("Phoenix");
+		 
+		 //State
+		 Select state = new Select(driver.findElement(By.xpath("//*[@id='id_state']")));
+		 state.selectByValue("3");
+		 
+		// zipcode
+		 driver.findElement(By.id("postcode")).sendKeys("12349");
+		 
+		//country
+		 Select country = new Select(driver.findElement(By.xpath("//*[@id='id_country']")));
+		 country.selectByValue("21");
+		 
+		// other
+		 driver.findElement(By.id("other")).sendKeys("01783730044");
+		 
+		 // phone
+		 driver.findElement(By.id("phone_mobile")).sendKeys("01783730044");
+		 
+		 driver.findElement(By.id("alias")).sendKeys("House 44");
+		 
+		 driver.findElement(By.id("submitAccount")).click();
+		 
+		 driver.get("http://automationpractice.com/index.php?id_category=8&controller=category");
+		 
+		 
+		 driver.findElement(By.xpath("//*[@data-id-product='3']")).click();
+		
+		 
+    }  
+  
+}  
